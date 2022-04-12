@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single PLaylist Screen</title>
+    <!-- it is connected to two stylesheets -->
+    <link rel="stylesheet" type="text/css" href="Single Playlist Screen Styles.css"><!-- this is the main stylesheet -->
+    <!-- desktop first approach is used for the same. -->
+    <link rel="stylesheet" type="text/css" href="Secondary page responsive.css">
+    <!-- this is the style sheet with all the media queries -->
+    <!-- this script is just for font awesome fonts -->
+    <script src="https://kit.fontawesome.com/2d9b67a497.js" crossorigin="anonymous"></script>
+    <!-- favicon for the music player app -->
+    <link rel="icon" type="image/x-icon" href="media\Spotify_App_Logo.svg-modified.png">
+</head>
+<!-- body -->
+
+<body>
+    <!-- top navigation bar -->
+    <nav class="navigation-bar">
+        <!-- this div contains the logo and title os the page -->
+        <div class="title-combo">
+            <div class="website-logo">
+                <img src="media\Spotify_App_Logo.svg-modified.png">
+            </div>
+            <div class="website-name">
+                <h1>
+                    <a href="home-screen.html">
+                        Spotify
+                    </a>
+                </h1>
+                <h4 style="color: magenta;">
+                    <a href="home-screen.html">Online Music Player</a>
+                </h4>
+            </div>
+        </div>
+        <!-- this is the animated favourites text -->
+        <div class="favs">
+            <h4>
+                Favourites
+            </h4>
+        </div>
+        <div class="search-bar">
+            <div>
+                <!-- magnifying glass- search icon -->
+                <i class="fas fa-search search-ico"></i>
+            </div>
+            <input type="text" name="search" placeholder="Search">
+            <div>
+                <!-- mic icon -->
+                <i class="fas fa-microphone mic-ico"></i>
+            </div>
+        </div>
+        <!-- this is for notification bell -->
+        <div class="notification-bell">
+            <img src="media/bell_icon.svg">
+
+        </div>
+        <!-- this is for profile picture -->
+        <div class="profile-picture">
+            <img src="media/profile_picture.svg">
+        </div>
+    </nav>
+    <!-- this is the main center part of the page and it is divided into two sections, namely section 1 and section 2-->
+    <!-- I have separated these sections using the aside tag for each section -->
+    <main>
+        <!-- aside section 1 -->
+        <aside class="aside section-1">
+            <!-- this is for the jumbotron -->
+            <div class="jumbotron">
+                <div >
+                   <img id="jumbotron-image" src="data:image/jpeg;base64,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">
+                </div>
+                <!-- jumbotron details -->
+                <div class="jumbotron-detail">
+                    <!-- descriptive part of the jumbotron this will contain name , number of followers and all -->
+                    <div class="descriptive-part">
+                        <div class="song-name-main">
+                            <h1>ColdPlay</h1>
+                        </div>
+                        <div class="followers">
+                            851 Followers
+                        </div>
+                        <p class="author">British Band</p>
+                        <!-- short description of the current author -->
+                        <p class="desc">
+                            Coldplay are a British rock band formed in London in 1996.
+                            They consist of vocalist and pianist Chris Martin, guitarist Jonny Buckland,
+                             bassist Guy Berryman, drummer Will Champion and creative director Phil Harvey.
+                            They met at University College London and began playing music together from 1996 to 1998,
+                             first calling themselves Pectoralz and then Starfish.
+                        </p>
+                    </div>
+                    <!-- action part -->
+                    <div class="action-part">
+                        <!-- action buttons -->
+                        <div class="btns">
+                            <button>Play All</button>
+                            <button>Follow</button>
+                        </div>
+                        <p>
+                            247 Tracks | 128 Albums
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- now the playlist part begins -->
+            <div class="playlist-items">
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            01
+                        </div>
+                        <div>
+                            <img src="media/playlist/austin-neill-kKlVSrFbjYY-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            02
+                        </div>
+                        <div>
+                            <img src="media/playlist/brian-suman-Y1V9Gy9O8Fw-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        3:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            03
+                        </div>
+                        <div>
+                            <img src="media/playlist/jacob-avanzato-2tAbcGKiaBc-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:45
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            04
+                        </div>
+                        <div>
+                            <img src="media/playlist/josh-durham-VOyZSh3L-gw-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        6:37
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            05
+                        </div>
+                        <div>
+                            <img src="media/playlist/martin-engel-grafiker-hamburg-KLFB1AEPLwA-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        3:24
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            06
+                        </div>
+                        <div>
+                            <img src="media/playlist/neonbrand-MENIBa0eZeA-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            07
+                        </div>
+                        <div>
+                            <img src="media/playlist/solozeta--VRtMRpcrVg-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            08
+                        </div>
+                        <div>
+                            <img src="media/playlist/stan-bonke-LIjUr3B9IXE-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            09
+                        </div>
+                        <div>
+                            <img src="media/playlist/thomas-millot-uyrYy3ogw58-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            10
+                        </div>
+                        <div>
+                            <img src="media/playlist/valery-escobar-llanos-D46gUK33HVY-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            11
+                        </div>
+                        <div>
+                            <img src="media/playlist/vidar-nordli-mathisen-Me5rtdNmIrU-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- playlist item -->
+                <div class="playlist-item">
+                    <div class="left">
+                        <div>
+                            12
+                        </div>
+                        <div>
+                            <img src="media/playlist/vinicius-amnx-amano-ABaMFrKOGng-unsplash.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p>
+                                Else
+                            </p>
+                        </div>
+                    </div>
+                    <div class="center">
+                        4:44
+                    </div>
+                    <div class="right">
+                        <div>
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- one aside section is complete -->
+        <!-- now the second aside section will start from here -->
+        <!-- the page is responsive. please try reducing the width of the page -->
+        <!-- the aside section will collapse and a "more button will be shown to you." -->
+        <!-- clicking on this more button, you will be shown the aside section 2  -->
+        <!-- its position will be absolute at lower resolutions -->
+        <!-- this is the label for that more button -->
+        <label for="more"><i class="fas fa-angle-double-left"></i>More</label>
+        <!-- this is that more button -->
+        <!-- and this is the check box. this will always be hidden -->
+        <!-- check the stylesheet_main.css when the label is clicked, this checkbox will be checked -->
+        <!-- which will invoke the aside section 2 on lower resolutions -->
+        <input type="checkbox" id="more">
+        <!-- </div> -->
+        <aside class="aside section-2">
+            <!-- similar class will be applicable to both similar artists and recently played -->
+            <div class="similar">
+                <!-- section heading, which also contains the view all button -->
+                <div class="section-heading">
+                    <h1>Similar Artists</h1>
+                    <div class="view-all-button">
+                        View All
+                    </div>
+                </div>
+                <!-- list is the container for the contents of similar artists -->
+                <div class="list">
+                    <!-- item -->
+                    <div class="list-item">
+                        <div>
+                            <img src="media/music themes/love.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div style="position: absolute; left:120px;">
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p class="author-name">
+                                Else
+                            </p>
+                        </div>
+                        <div class="extra">
+                            <div>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <p class="author-name">
+                                4:44
+                            </p>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <div class="list-item">
+                        <div>
+                            <img src="media/music themes/pop.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div style="position: absolute; left:120px;">
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p class="author-name">
+                                Else
+                            </p>
+                        </div>
+                        <div class="extra">
+                            <div>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <p class="author-name">
+                                4:44
+                            </p>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <div class="list-item">
+                        <div>
+                            <img src="media/music themes/rock.jpg">
+                            <div class="play-btn">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div style="position: absolute; left:120px;">
+                            <h5>
+                                Mirage
+                            </h5>
+                            <p class="author-name">
+                                Else
+                            </p>
+                        </div>
+                        <div class="extra">
+                            <div>
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                            <p class="author-name">
+                                4:44
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- recently played section -->
+                <div class="similar">
+                    <!-- section headings, which also contains the view all button -->
+                    <div class="section-heading">
+                        <h1>Recently Played</h1>
+                        <div class="view-all-button">
+                            View All
+                        </div>
+                    </div>
+                    <!-- again list is a container for all the contents of recently played section -->
+                    <div class="list">
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    01
+                                </div>
+                                <div>
+                                    <img src="media/latest english/I'll Wait.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    02
+                                </div>
+                                <div>
+                                    <img src="media/latest english/let me go.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    03
+                                </div>
+                                <div>
+                                    <img src="media/latest english/qurantine clean.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    04
+                                </div>
+                                <div>
+                                    <img src="media/latest english/roar.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    05
+                                </div>
+                                <div>
+                                    <img src="media/latest english/toosie slide.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    06
+                                </div>
+                                <div>
+                                    <img src="media/latest english/uptown funk.png">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    07
+                                </div>
+                                <div>
+                                    <img src="media/latest hindi/baarish.jpeg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    08
+                                </div>
+                                <div>
+                                    <img src="media/latest hindi/galiyaan.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- item -->
+                        <div class="playlist-item">
+                            <div class="left">
+                                <div>
+                                    09
+                                </div>
+                                <div>
+                                    <img src="media/latest hindi/giveme some sunshine.jpg">
+                                    <div class="play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Mirage
+                                    </h5>
+                                    <p>
+                                        Else
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div>
+                                    <i class="far fa-heart"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+
+
+
+    <!-- main part of the page is over. -->
+    <!-- this is the footer part. -->
+    <!-- its position will be fixed to the screen bottom. -->
+    <footer>
+        <div class="active-song-description">
+            <!-- song image -->
+            <div id="song-image">
+                <img src="media/latest english/roar.jpg">
+            </div>
+            <!-- song name and author -->
+            <div class="song-desc">
+                <div>
+                    Imagine by John
+                </div>
+                <div>
+                    John Lenon
+                </div>
+            </div>
+                <!-- heart icon and ban icon -->
+            <div class="heart-and-ban-icon">
+                <span>
+                    <i class="far fa-heart"></i>
+                </span>
+                <span>
+                    <i class="fas fa-ban"></i>
+                </span>
+            </div>
+        </div>
+        <!-- these are the main player controls -->
+        <div class="player">
+            <div class="controls">
+                <div><i class="fas fa-random"></i></div>
+                <div><i class="fas fa-step-backward"></i></div>
+                <div><i class="fas fa-pause-circle"></i></div>
+                <div><i class="fas fa-step-forward"></i></div>
+                <div><i class="fas fa-redo"></i></div>
+            </div>
+            <!-- this is the slider -->
+            <div id="slider">
+                <!-- current time -->
+                <div class="time">
+                    1:39
+                </div>
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                </div>
+                <!-- total time -->
+                <div class="time">
+                    4:44
+                </div>
+            </div>
+        </div>
+        <!-- other icons including the volume slider and all -->
+        <div class="extras">
+            <div>
+                <i class="fas fa-list-ul"></i>
+            </div>
+            <div>
+                <i class="fas fa-laptop"></i>
+            </div>
+            <div>
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <div class="slidecontainer" style="width:30%;">
+                <input type="range" min="0" max="100" value="0" class="slider" id="myRange" style="margin-top:0px;">
+            </div>
+            <div>
+                <i class="fas fa-expand-alt"></i>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
